@@ -1,0 +1,33 @@
+name: aaroh_chat
+description: >
+  A plug-and-play Flutter chat SDK by Aaroh. Add a fully functional AI chat 
+  widget to your app in minutes. Supports built-in NLP engine and Claude API. 
+  Customize with your company branding and knowledge base.
+version: 1.0.0
+homepage: https://github.com/shilpajain-pinaka/aaroh_chat
+repository: https://github.com/shilpajain-pinaka/aaroh_chat
+issue_tracker: https://github.com/shilpajain-pinaka/aaroh_chat/issues
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.2
+  shared_preferences: ^2.3.2
+  uuid: ^4.5.1
+  intl: ^0.19.0
+  http: ^1.2.2
+  speech_to_text: ^7.0.0
+  google_fonts: ^6.2.1
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  # No assets needed — SDK is code-only
