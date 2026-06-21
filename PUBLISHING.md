@@ -1,24 +1,24 @@
-# pub.dev pe Publish Kaise Karein — Step by Step Guide
+# Publishing to pub.dev — Step by Step Guide
 
 ## Prerequisites
 
 1. **Flutter SDK** installed (>=3.10.0)
 2. **Google account** (pub.dev uses Google login)
-3. **pub.dev account** — [pub.dev](https://pub.dev) pe jaake Google se login karo
+3. **pub.dev account** — go to [pub.dev](https://pub.dev) and log in with Google
 
 ---
 
-## Step 1 — Package taiyaar karo
+## Step 1 — Prepare your package
 
-### Zaroori files checklist:
+### Required files checklist:
 ```
 aaroh_chat/
 ├── lib/
 │   └── aaroh_chat.dart        ✅ Main export file
 ├── pubspec.yaml               ✅ Package info
 ├── README.md                  ✅ Documentation
-├── CHANGELOG.md               ✅ Version history (zaroori!)
-├── LICENSE                    ✅ MIT license (zaroori!)
+├── CHANGELOG.md               ✅ Version history (required!)
+├── LICENSE                    ✅ MIT license (required!)
 └── example/
     └── lib/
         └── main.dart          ✅ Example app (bonus points)
@@ -26,10 +26,10 @@ aaroh_chat/
 
 ---
 
-## Step 2 — pubspec.yaml sahi karo
+## Step 2 — Set up pubspec.yaml correctly
 
 ```yaml
-name: aaroh_chat          # pub.dev pe yahi naam dikhega
+name: aaroh_chat          # this is the name shown on pub.dev
 description: >            # 60-180 characters
   A plug-and-play Flutter chat SDK...
 version: 1.0.0            # Semantic versioning
@@ -37,12 +37,12 @@ homepage: https://github.com/yourname/aaroh_chat
 repository: https://github.com/yourname/aaroh_chat
 ```
 
-**Important:** `name` globally unique hona chahiye pub.dev pe.
-Pehle check karo: `https://pub.dev/packages/aaroh_chat`
+**Important:** `name` must be globally unique on pub.dev.
+Check first: `https://pub.dev/packages/aaroh_chat`
 
 ---
 
-## Step 3 — CHANGELOG.md banao
+## Step 3 — Create CHANGELOG.md
 
 ```markdown
 ## 1.0.0
@@ -56,7 +56,7 @@ Pehle check karo: `https://pub.dev/packages/aaroh_chat`
 
 ---
 
-## Step 4 — LICENSE file banao
+## Step 4 — Create a LICENSE file
 
 ```
 MIT License
@@ -69,38 +69,38 @@ of this software...
 
 ---
 
-## Step 5 — Dry run (pehle test karo, publish mat karo)
+## Step 5 — Dry run (test first, don't publish yet)
 
 ```bash
 cd aaroh_chat/
 flutter pub publish --dry-run
 ```
 
-Yeh errors dikhayega bina actually publish kiye.
+This will show errors without actually publishing.
 
-**Common errors aur fixes:**
+**Common errors and fixes:**
 
 | Error | Fix |
 |-------|-----|
-| `description too short` | pubspec description 60+ chars karo |
-| `No LICENSE file` | LICENSE file add karo |
-| `Missing example` | example/lib/main.dart banao |
-| `Import not found` | Sab imports check karo |
-| `score too low` | README + example + dartdoc comments add karo |
+| `description too short` | Make pubspec description 60+ characters |
+| `No LICENSE file` | Add a LICENSE file |
+| `Missing example` | Create example/lib/main.dart |
+| `Import not found` | Check all your imports |
+| `score too low` | Add README + example + dartdoc comments |
 
 ---
 
-## Step 6 — Score badhao (pub.dev score important hai!)
+## Step 6 — Improve your score (pub.dev score matters!)
 
 ```bash
-# Analysis tool run karo
+# Run the analysis tool
 dart pub publish --dry-run
 dart analyze
 ```
 
-**Score ke liye:**
-- ✅ `dart analyze` zero warnings/errors
-- ✅ Dartdoc comments (/// comments) on public APIs
+**To boost your score:**
+- ✅ `dart analyze` with zero warnings/errors
+- ✅ Dartdoc comments (`///` comments) on public APIs
 - ✅ README.md with examples
 - ✅ CHANGELOG.md
 - ✅ LICENSE file
@@ -109,42 +109,42 @@ dart analyze
 
 ---
 
-## Step 7 — Actually publish karo
+## Step 7 — Actually publish
 
 ```bash
 flutter pub publish
 ```
 
-Terminal mein yeh aayega:
+You'll see this in the terminal:
 ```
 Pub needs your authorization to upload packages on your behalf.
-... (browser khulega Google login ke liye)
+... (a browser will open for Google login)
 ```
 
-Google account se login karo → Allow karo → Done!
+Log in with your Google account → Allow → Done!
 
 ---
 
-## Step 8 — Verify karo
+## Step 8 — Verify
 
-Kuch minutes baad:
+After a few minutes, check:
 ```
 https://pub.dev/packages/aaroh_chat
 ```
 
-pe package dikhega.
+Your package will appear there.
 
 ---
 
-## Nayi version update karne ke liye
+## To publish a new version
 
 ```yaml
-# pubspec.yaml mein version update karo
+# update version in pubspec.yaml
 version: 1.0.1
 ```
 
 ```markdown
-# CHANGELOG.md mein entry add karo
+# add an entry in CHANGELOG.md
 ## 1.0.1
 * Bug fix: Claude streaming improved
 * Added custom primaryColor support
@@ -156,9 +156,9 @@ flutter pub publish
 
 ---
 
-## Tips for High Pub Score (100/140 target)
+## Tips for a High Pub Score (target: 100/140)
 
-1. **Dartdoc comments** har public class/method pe:
+1. **Dartdoc comments** on every public class/method:
    ```dart
    /// Creates an Aaroh chat widget.
    /// 
@@ -166,19 +166,19 @@ flutter pub publish
    class AarohChatWidget extends StatefulWidget {
    ```
 
-2. **Example app** complete banao (example/lib/main.dart)
+2. **Complete example app** (example/lib/main.dart)
 
-3. **dart format** run karo:
+3. **Run dart format:**
    ```bash
    dart format lib/
    ```
 
-4. **dart analyze** zero issues:
+4. **dart analyze with zero issues:**
    ```bash
    dart analyze lib/
    ```
 
-5. **Topics** add karo pubspec.yaml mein:
+5. **Add topics** in pubspec.yaml:
    ```yaml
    topics:
      - chat
@@ -190,26 +190,36 @@ flutter pub publish
 
 ---
 
-## GitHub pe bhi daalo (recommended)
+## Also put it on GitHub (recommended)
 
-1. GitHub pe repo banao: `aaroh_chat`
-2. Code push karo
-3. pubspec.yaml mein `repository:` URL set karo
-4. pub.dev automatically GitHub stats show karta hai
+1. Create a GitHub repo: `aaroh_chat`
+2. Push your code
+3. Set the `repository:` URL in pubspec.yaml
+4. pub.dev automatically shows GitHub stats
 
 ---
 
 ## Troubleshooting
 
 **"Package name already taken"**
-→ `aaroh_chat_sdk` ya `aaroh_flutter_chat` try karo
+→ Try `aaroh_chat_sdk` or `aaroh_flutter_chat`
 
 **"Too many publish attempts"**
-→ pub.dev limits hai, 1 ghante baad try karo
+→ pub.dev has rate limits — try again after 1 hour
 
 **"Authentication failed"**
-→ `dart pub logout` then `dart pub publish` again
+→ Run `dart pub logout` then `dart pub publish` again
 
-**Score 40 se kam hai**
-→ README, LICENSE, CHANGELOG, example — sab check karo
-→ `dart analyze` run karo — warnings fix karo
+**Score is below 40**
+→ Check README, LICENSE, CHANGELOG, example — all of them
+→ Run `dart analyze` — fix any warnings
+
+**"Package upload canceled" right after confirming with `y`**
+→ This usually points to an authentication problem rather than a validation problem (validation already passed if you got to the confirmation prompt). Try:
+```bash
+dart pub login
+```
+Run this on its own first to confirm you're properly authenticated and to re-trigger the browser OAuth flow if needed. Then retry with verbose output to see the actual server response:
+```bash
+flutter pub publish -v
+```

@@ -1,3 +1,25 @@
+## 1.2.1+1
+
+### Bug Fixes
+* Fixed issues with message action handling in certain navigation scenarios
+* Fixed knowledge base matching edge cases causing incorrect fallback responses
+* Fixed support message detection inconsistencies in the built-in engine
+* Fixed route navigation issues when using nested navigators
+* Fixed chat history synchronization issues in specific cases
+* Fixed minor UI rendering and layout inconsistencies
+* Fixed various null-safety and stability issues
+* General bug fixes and performance improvements
+
+## 1.2.1
+
+* Upgraded Flutter and package dependencies to the latest stable versions for improved compatibility and performance
+* Added support for the latest Flutter SDK releases
+* Improved compatibility with newer Android and iOS platform versions
+* Enhanced deep-link navigation handling and route resolution stability
+* Improved built-in engine response matching performance
+* Updated internal dependencies and build configurations
+* Improved overall SDK reliability and startup performance
+
 ## 1.2.0
 
 * Added `TopicRule` — define "if user asks about X, reply with Y" rules for the built-in engine, checked before the knowledge base

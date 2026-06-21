@@ -72,14 +72,17 @@ class _ChatInputState extends State<ChatInput> {
           );
           setState(() {});
         }
+
         if (result.finalResult) {
           setState(() => _isListening = false);
         }
       },
-      listenFor: const Duration(seconds: 30),
-      pauseFor: const Duration(seconds: 4),
-      partialResults: true,
-      localeId: 'en_US',
+      listenOptions: SpeechListenOptions(
+        listenFor: const Duration(seconds: 30),
+        pauseFor: const Duration(seconds: 4),
+        partialResults: true,
+        localeId: 'en_US',
+      ),
     );
   }
 

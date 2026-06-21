@@ -28,7 +28,7 @@ Built by **Aaroh AI** · *Powered by Aaroh* shown in every widget.
 ```yaml
 # pubspec.yaml
 dependencies:
-  aaroh_chat: ^1.0.0
+  aaroh_chat: ^1.2.1+1
 ```
 
 ```bash

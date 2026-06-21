@@ -568,7 +568,9 @@ class TopicClassifier {
           score += kw.contains(' ') ? 2.5 : 1.0;
         }
       }
-      if (score > 0) scores[entry.key] = score;
+      if (score > 0) {
+        scores[entry.key] = score;
+      }
     }
 
     if (scores.isEmpty) {
@@ -617,65 +619,115 @@ class ContextExtractor {
   // Pull time mentions
   static String? extractTime(String text) {
     final t = text.toLowerCase();
-    if (t.contains('3am') || t.contains('3 am')) return '3 AM';
-    if (t.contains('2am') || t.contains('2 am')) return '2 AM';
-    if (t.contains('4am') || t.contains('4 am')) return '4 AM';
-    if (t.contains('midnight')) return 'midnight';
-    if (t.contains('night')) return 'at night';
-    if (t.contains('morning')) return 'in the morning';
+    if (t.contains('3am') || t.contains('3 am')) {
+      return '3 AM';
+    }
+    if (t.contains('2am') || t.contains('2 am')) {
+      return '2 AM';
+    }
+    if (t.contains('4am') || t.contains('4 am')) {
+      return '4 AM';
+    }
+    if (t.contains('midnight')) {
+      return 'midnight';
+    }
+    if (t.contains('night')) {
+      return 'at night';
+    }
+    if (t.contains('morning')) {
+      return 'in the morning';
+    }
     return null;
   }
 
   // Pull duration/frequency mentions
   static String? extractDuration(String text) {
     final t = text.toLowerCase();
-    if (t.contains('month') || t.contains('mahine')) return 'for months';
-    if (t.contains('week') || t.contains('hafte')) return 'for weeks';
-    if (t.contains('year') || t.contains('saal')) return 'for a long time';
-    if (t.contains('days') || t.contains('din se')) return 'for a few days';
-    if (t.contains('today') || t.contains('aaj')) return 'today';
-    if (t.contains('lately') || t.contains('kuch dino se')) return 'lately';
+    if (t.contains('month') || t.contains('mahine')) {
+      return 'for months';
+    }
+    if (t.contains('week') || t.contains('hafte')) {
+      return 'for weeks';
+    }
+    if (t.contains('year') || t.contains('saal')) {
+      return 'for a long time';
+    }
+    if (t.contains('days') || t.contains('din se')) {
+      return 'for a few days';
+    }
+    if (t.contains('today') || t.contains('aaj')) {
+      return 'today';
+    }
+    if (t.contains('lately') || t.contains('kuch dino se')) {
+      return 'lately';
+    }
     return null;
   }
 
   // Pull a person/relationship mentioned
   static String? extractPerson(String text) {
     final t = text.toLowerCase();
-    if (t.contains('boyfriend') || t.contains('bf')) return 'boyfriend';
-    if (t.contains('girlfriend') || t.contains('gf')) return 'girlfriend';
-    if (t.contains('partner') || t.contains('husband') || t.contains('wife'))
+    if (t.contains('boyfriend') || t.contains('bf')) {
+      return 'boyfriend';
+    }
+    if (t.contains('girlfriend') || t.contains('gf')) {
+      return 'girlfriend';
+    }
+    if (t.contains('partner') || t.contains('husband') || t.contains('wife')) {
       return 'partner';
+    }
     if (t.contains('mom') ||
         t.contains('mummy') ||
         t.contains('mother') ||
-        t.contains('maa')) return 'mom';
+        t.contains('maa')) {
+      return 'mom';
+    }
     if (t.contains('dad') ||
         t.contains('papa') ||
         t.contains('father') ||
-        t.contains('baap')) return 'dad';
-    if (t.contains('parent')) return 'parents';
-    if (t.contains('friend') || t.contains('dost')) return 'friend';
-    if (t.contains('boss') || t.contains('manager')) return 'boss';
+        t.contains('baap')) {
+      return 'dad';
+    }
+    if (t.contains('parent')) {
+      return 'parents';
+    }
+    if (t.contains('friend') || t.contains('dost')) {
+      return 'friend';
+    }
+    if (t.contains('boss') || t.contains('manager')) {
+      return 'boss';
+    }
     if (t.contains('sibling') ||
         t.contains('brother') ||
         t.contains('bhai') ||
         t.contains('sister') ||
-        t.contains('behen')) return 'sibling';
+        t.contains('behen')) {
+      return 'sibling';
+    }
     return null;
   }
 
   // Pull a specific cause/trigger
   static String? extractTrigger(String text) {
     final t = text.toLowerCase();
-    if (t.contains('exam') || t.contains('test')) return 'exam pressure';
-    if (t.contains('job') || t.contains('work') || t.contains('office'))
+    if (t.contains('exam') || t.contains('test')) {
+      return 'exam pressure';
+    }
+    if (t.contains('job') || t.contains('work') || t.contains('office')) {
       return 'work';
-    if (t.contains('money') || t.contains('paisa') || t.contains('financial'))
+    }
+    if (t.contains('money') || t.contains('paisa') || t.contains('financial')) {
       return 'financial stress';
-    if (t.contains('future') || t.contains('career')) return 'future';
-    if (t.contains('health') || t.contains('bimari') || t.contains('sick'))
+    }
+    if (t.contains('future') || t.contains('career')) {
+      return 'future';
+    }
+    if (t.contains('health') || t.contains('bimari') || t.contains('sick')) {
       return 'health';
-    if (t.contains('loneliness') || t.contains('akela')) return 'feeling alone';
+    }
+    if (t.contains('loneliness') || t.contains('akela')) {
+      return 'feeling alone';
+    }
     return null;
   }
 
@@ -716,8 +768,12 @@ class ContextExtractor {
   static String detectLang(String text) {
     final hasDevanagari = RegExp(r'[\u0900-\u097F]').hasMatch(text);
     final hasLatin = RegExp(r'[a-zA-Z]').hasMatch(text);
-    if (hasDevanagari && hasLatin) return 'hinglish';
-    if (hasDevanagari && !hasLatin) return 'hindi';
+    if (hasDevanagari && hasLatin) {
+      return 'hinglish';
+    }
+    if (hasDevanagari && !hasLatin) {
+      return 'hindi';
+    }
     return 'english';
   }
 }
@@ -734,6 +790,12 @@ class SmartResponseEngine {
 
   void restoreFromHistory(List<ChatMessage> history) {
     // Rebuild memory state from existing history
+    // NOTE: topic is set to Topic.general here because the original topic
+    // classification for past assistant turns is not persisted anywhere.
+    // This means lastTopic/consecutiveSameTopic tracking resets to "general"
+    // after an app restart even mid-conversation — worth fixing properly by
+    // persisting the classified Topic alongside each ChatMessage if you want
+    // true continuity across sessions.
     for (final msg in history) {
       if (msg.role == MessageRole.assistant && msg.content.isNotEmpty) {
         memory._turns.add(_Turn(topic: Topic.general, response: msg.content));
@@ -749,7 +811,7 @@ class SmartResponseEngine {
   }) async {
     final lang = ContextExtractor.detectLang(userMessage);
     final match =
-        TopicClassifier.classify(userMessage, lastTopic: memory.lastTopic);
+    TopicClassifier.classify(userMessage, lastTopic: memory.lastTopic);
     final sentiment = _sentiment.analyze(userMessage);
     final wantsAdvice = ContextExtractor.isAskingForAdvice(userMessage);
     final isVenting = ContextExtractor.isVenting(userMessage);
@@ -833,8 +895,8 @@ class SmartResponseEngine {
   // ─── CRISIS ───────────────────────────────────────────────────────────────
   String _crisis(_ResponseCtx c) {
     final responses = [
-      "Hey — I'm really glad you said something. What you're feeling right now is real, and I don't want you to face it alone.\n\nPlease reach out right now:\n• **iCall**: 9152987821 (free, confidential)\n• **Vandrevala Foundation**: 1860-2662-345 (24/7)\n• **AASRA**: 9820466627\n\nI'm here too. Can you tell me a little about what's brought you to this point?",
-      "That takes courage to say, and I'm grateful you did. You matter — even when it doesn't feel that way.\n\nPlease talk to someone right now:\n• **iCall**: 9152987821\n• **AASRA**: 9820466627 (24/7)\n\nWhile you consider reaching out, I'm here. What's been happening?",
+      "Hey — I'm really glad you said something. What you're feeling right now is real, and I don't want you to face it alone.\n\nPlease reach out right now:\n• **iCall**: 9152987821 (free, confidential)\n• **Vandrevala Foundation**: 1860-2662-345 (24/7)\n• **AASRA**: 9820466726\n\nI'm here too. Can you tell me a little about what's brought you to this point?",
+      "That takes courage to say, and I'm grateful you did. You matter — even when it doesn't feel that way.\n\nPlease talk to someone right now:\n• **iCall**: 9152987821\n• **AASRA**: 9820466726 (24/7)\n\nWhile you consider reaching out, I'm here. What's been happening?",
       "I hear you, and I want you to know that reaching out — even here — was the right move.\n\nThese counselors are trained for exactly this moment:\n• **Vandrevala Foundation**: 1860-2662-345 (24/7, free)\n• **iCall**: 9152987821\n\nTell me what's going on. I'm listening, no judgment at all.",
     ];
     return _pick(responses);
@@ -855,16 +917,16 @@ class SmartResponseEngine {
 
   // ─── THANKS / GRATITUDE ───────────────────────────────────────────────────
   String _thanks(_ResponseCtx c) => _pick([
-        "I'm really glad it helped! You did the hard part — I just listened. Anything else on your mind?",
-        "That means a lot to hear. You're doing better than you think. Anything else you want to talk about?",
-        "Of course! Come back anytime. Is there anything else you'd like to explore today?",
-      ]);
+    "I'm really glad it helped! You did the hard part — I just listened. Anything else on your mind?",
+    "That means a lot to hear. You're doing better than you think. Anything else you want to talk about?",
+    "Of course! Come back anytime. Is there anything else you'd like to explore today?",
+  ]);
 
   String _gratitude(_ResponseCtx c) => _pick([
-        "That's wonderful — hold onto that feeling! What made today feel good?",
-        "Love hearing that! When things feel good, it's worth noticing what's working. What's been different lately?",
-        "That's great! So what's been going well?",
-      ]);
+    "That's wonderful — hold onto that feeling! What made today feel good?",
+    "Love hearing that! When things feel good, it's worth noticing what's working. What's been different lately?",
+    "That's great! So what's been going well?",
+  ]);
 
   // ─── SLEEP ────────────────────────────────────────────────────────────────
   String _sleepProblem(_ResponseCtx c) {
@@ -896,10 +958,10 @@ class SmartResponseEngine {
   }
 
   String _sleepAdvice(_ResponseCtx c) => _pick([
-        "Sure! The biggest lever most people miss is **consistency** — going to bed and waking up at the same time every day, even weekends. Your brain needs a predictable rhythm.\n\nOther things that actually work:\n• No screens 45 mins before bed (the blue light delays melatonin)\n• Keep the room cool and dark\n• If you're lying awake 20+ mins, get up and do something boring until you feel sleepy\n\nWhat's your current bedtime situation like?",
-        "Here's what the research actually backs up for sleep:\n\n• **Wind-down routine** — same 30 min ritual every night signals your brain it's sleep time\n• **4-7-8 breathing** — breathe in 4 sec, hold 7, out 8 sec. Does something real to your nervous system\n• **No caffeine after 2 PM** — it has a 6-hour half-life\n• **Worry journaling** — dump racing thoughts on paper before bed\n\nWhich of these feels most doable for you?",
-        "The single most effective thing: **stop trying to force sleep**. The harder you try, the more awake you become. Instead, just lie there and say 'I'm just resting.'\n\nAlso — what are you doing in the hour before bed? That's usually where the problem hides.",
-      ]);
+    "Sure! The biggest lever most people miss is **consistency** — going to bed and waking up at the same time every day, even weekends. Your brain needs a predictable rhythm.\n\nOther things that actually work:\n• No screens 45 mins before bed (the blue light delays melatonin)\n• Keep the room cool and dark\n• If you're lying awake 20+ mins, get up and do something boring until you feel sleepy\n\nWhat's your current bedtime situation like?",
+    "Here's what the research actually backs up for sleep:\n\n• **Wind-down routine** — same 30 min ritual every night signals your brain it's sleep time\n• **4-7-8 breathing** — breathe in 4 sec, hold 7, out 8 sec. Does something real to your nervous system\n• **No caffeine after 2 PM** — it has a 6-hour half-life\n• **Worry journaling** — dump racing thoughts on paper before bed\n\nWhich of these feels most doable for you?",
+    "The single most effective thing: **stop trying to force sleep**. The harder you try, the more awake you become. Instead, just lie there and say 'I'm just resting.'\n\nAlso — what are you doing in the hour before bed? That's usually where the problem hides.",
+  ]);
 
   // ─── ANXIETY ──────────────────────────────────────────────────────────────
   String _anxietyFeelings(_ResponseCtx c) {
@@ -929,10 +991,10 @@ class SmartResponseEngine {
   }
 
   String _anxietyTips(_ResponseCtx c) => _pick([
-        "The fastest thing when anxiety spikes: **box breathing**.\n\nBreathe in 4 counts → hold 4 → out 4 → hold 4. Do this 4-5 times. It literally activates your parasympathetic nervous system.\n\nFor the mental side — the 5-4-3-2-1 technique:\n• Name 5 things you can see\n• 4 you can touch\n• 3 you can hear\n• 2 you can smell\n• 1 you can taste\n\nThis pulls your brain back into the present. Want me to walk you through either one?",
-        "A few things that genuinely help:\n\n• **Label it**: Saying 'I'm feeling anxious' (instead of just experiencing it) gives your prefrontal cortex control back\n• **Cold water** on your face — triggers the dive reflex and slows your heart rate\n• **Physical movement** — even a 10-min walk burns off the adrenaline\n• **Limit what-if thinking** by asking: 'What is actually happening RIGHT NOW?'\n\nWhich of these sounds most useful for your situation?",
-        "Here's what I'd suggest trying:\n\n**Right now if it's bad**: Focus on the exhale. Make it longer than your inhale — like breathe in 4 counts, out 6-8. The long exhale activates your vagus nerve and calms things down.\n\n**Longer term**: Anxiety often gets worse when we avoid the thing causing it. Sometimes the best fix is slowly doing the scary thing. Is there something specific you've been avoiding?",
-      ]);
+    "The fastest thing when anxiety spikes: **box breathing**.\n\nBreathe in 4 counts → hold 4 → out 4 → hold 4. Do this 4-5 times. It literally activates your parasympathetic nervous system.\n\nFor the mental side — the 5-4-3-2-1 technique:\n• Name 5 things you can see\n• 4 you can touch\n• 3 you can hear\n• 2 you can smell\n• 1 you can taste\n\nThis pulls your brain back into the present. Want me to walk you through either one?",
+    "A few things that genuinely help:\n\n• **Label it**: Saying 'I'm feeling anxious' (instead of just experiencing it) gives your prefrontal cortex control back\n• **Cold water** on your face — triggers the dive reflex and slows your heart rate\n• **Physical movement** — even a 10-min walk burns off the adrenaline\n• **Limit what-if thinking** by asking: 'What is actually happening RIGHT NOW?'\n\nWhich of these sounds most useful for your situation?",
+    "Here's what I'd suggest trying:\n\n**Right now if it's bad**: Focus on the exhale. Make it longer than your inhale — like breathe in 4 counts, out 6-8. The long exhale activates your vagus nerve and calms things down.\n\n**Longer term**: Anxiety often gets worse when we avoid the thing causing it. Sometimes the best fix is slowly doing the scary thing. Is there something specific you've been avoiding?",
+  ]);
 
   // ─── DEPRESSION ───────────────────────────────────────────────────────────
   String _depressionFeelings(_ResponseCtx c) {
@@ -969,10 +1031,10 @@ class SmartResponseEngine {
   }
 
   String _depressionTips(_ResponseCtx c) => _pick([
-        "When you're in a low place, the goal isn't to 'fix' everything — it's just to do the next small thing.\n\n**What actually helps:**\n• One tiny win (shower, glass of water, open a window) — your brain registers it\n• Don't isolate, even if you want to — text one person anything\n• Sunlight. Even 10 minutes changes brain chemistry\n• Move your body in any way — walk, stretch, anything\n\nWhat's the smallest possible step that feels doable today?",
-        "Depression makes everything feel 10x harder, so conventional advice like 'just exercise!' can feel impossible. Let's make it smaller.\n\n**Start with behavioral activation** — just doing ONE thing you used to like, even if it brings no joy right now. The feeling sometimes comes back after the action, not before.\n\nWhat's something small you used to enjoy?",
-        "A few things that work even when nothing feels worth doing:\n\n• Get outside — even standing at your door for 5 minutes counts\n• Routine is medicine — same wake time every day anchors your mood\n• Talk to someone, even a little — isolation feeds depression\n• Be gentle with yourself — low productivity during this is not failure\n\nHave you spoken to a doctor or therapist about this? Even one session can help.",
-      ]);
+    "When you're in a low place, the goal isn't to 'fix' everything — it's just to do the next small thing.\n\n**What actually helps:**\n• One tiny win (shower, glass of water, open a window) — your brain registers it\n• Don't isolate, even if you want to — text one person anything\n• Sunlight. Even 10 minutes changes brain chemistry\n• Move your body in any way — walk, stretch, anything\n\nWhat's the smallest possible step that feels doable today?",
+    "Depression makes everything feel 10x harder, so conventional advice like 'just exercise!' can feel impossible. Let's make it smaller.\n\n**Start with behavioral activation** — just doing ONE thing you used to like, even if it brings no joy right now. The feeling sometimes comes back after the action, not before.\n\nWhat's something small you used to enjoy?",
+    "A few things that work even when nothing feels worth doing:\n\n• Get outside — even standing at your door for 5 minutes counts\n• Routine is medicine — same wake time every day anchors your mood\n• Talk to someone, even a little — isolation feeds depression\n• Be gentle with yourself — low productivity during this is not failure\n\nHave you spoken to a doctor or therapist about this? Even one session can help.",
+  ]);
 
   // ─── STRESS ───────────────────────────────────────────────────────────────
   String _stressWork(_ResponseCtx c) {
@@ -987,10 +1049,10 @@ class SmartResponseEngine {
   }
 
   String _stressExam(_ResponseCtx c) => _pick([
-        "Exam pressure is real — it's not just 'in your head.' The stakes feel huge.\n\nA few things that actually help under pressure:\n• Study in 25-min blocks with 5-min breaks (Pomodoro) — your brain retains more\n• Sleep before exams beats cramming all night — memory consolidates during sleep\n• Test anxiety? Practice box breathing right before: in 4, hold 4, out 4\n\nHow much time do you have before the exam?",
-        "That exam stress is so common, but that doesn't make it easier. What subject or area feels most daunting right now?",
-        "I hear you. Is the stress more about not knowing the material, or more about the fear of the result and what it means for your future?",
-      ]);
+    "Exam pressure is real — it's not just 'in your head.' The stakes feel huge.\n\nA few things that actually help under pressure:\n• Study in 25-min blocks with 5-min breaks (Pomodoro) — your brain retains more\n• Sleep before exams beats cramming all night — memory consolidates during sleep\n• Test anxiety? Practice box breathing right before: in 4, hold 4, out 4\n\nHow much time do you have before the exam?",
+    "That exam stress is so common, but that doesn't make it easier. What subject or area feels most daunting right now?",
+    "I hear you. Is the stress more about not knowing the material, or more about the fear of the result and what it means for your future?",
+  ]);
 
   String _stressFamily(_ResponseCtx c) {
     final personStr = c.person != null ? 'your ${c.person}' : 'your family';
@@ -1012,10 +1074,10 @@ class SmartResponseEngine {
   }
 
   String _lonelinessLight(_ResponseCtx c) => _pick([
-        "That feeling of loneliness is something a lot of people carry quietly. Is it more that you don't have people around, or that the people around you don't really *get* you?",
-        "Missing connection is so human. Has something changed recently — new place, lost touch with friends, different life stage?",
-        "Loneliness can sneak up. Are you in a situation where you're physically alone, or is it more of an emotional disconnection even when you're around others?",
-      ]);
+    "That feeling of loneliness is something a lot of people carry quietly. Is it more that you don't have people around, or that the people around you don't really *get* you?",
+    "Missing connection is so human. Has something changed recently — new place, lost touch with friends, different life stage?",
+    "Loneliness can sneak up. Are you in a situation where you're physically alone, or is it more of an emotional disconnection even when you're around others?",
+  ]);
 
   // ─── RELATIONSHIPS ────────────────────────────────────────────────────────
   String _breakup(_ResponseCtx c) {
@@ -1037,10 +1099,10 @@ class SmartResponseEngine {
   }
 
   String _relFriends(_ResponseCtx c) => _pick([
-        "Friendship betrayal stings in a special way — these are people you chose. What happened, if you want to share?",
-        "Losing a friend or realizing they're not who you thought — that's genuinely painful. Is this one person or more of a wider feeling?",
-        "Friends can be complicated. What's going on — was there a specific incident, or has it been building?",
-      ]);
+    "Friendship betrayal stings in a special way — these are people you chose. What happened, if you want to share?",
+    "Losing a friend or realizing they're not who you thought — that's genuinely painful. Is this one person or more of a wider feeling?",
+    "Friends can be complicated. What's going on — was there a specific incident, or has it been building?",
+  ]);
 
   // ─── ANGER ────────────────────────────────────────────────────────────────
   String _anger(_ResponseCtx c) {
@@ -1053,10 +1115,10 @@ class SmartResponseEngine {
   }
 
   String _angerTips(_ResponseCtx c) => _pick([
-        "When anger is hot:\n• **Physical release first** — brisk walk, cold water on your face, squeeze something\n• **Don't act while in the peak** — give it 10 minutes before responding\n• Then ask: what's the actual need underneath this anger?\n\nWho or what is it directed at?",
-        "The fastest way to take the edge off anger: **move your body**. Walk, run, anything physical. Anger is adrenaline — burn it off.\n\nOnce the heat passes, the useful question is: what do I actually need here that I'm not getting?",
-        "A few practical things:\n• Slow the exhale — breathe out twice as long as you breathe in\n• Name what you're feeling precisely — 'I'm feeling disrespected' is more useful than 'I'm angry'\n• Separate the problem from the person if you can\n\nWhat's the situation — is it something ongoing or a one-time thing?",
-      ]);
+    "When anger is hot:\n• **Physical release first** — brisk walk, cold water on your face, squeeze something\n• **Don't act while in the peak** — give it 10 minutes before responding\n• Then ask: what's the actual need underneath this anger?\n\nWho or what is it directed at?",
+    "The fastest way to take the edge off anger: **move your body**. Walk, run, anything physical. Anger is adrenaline — burn it off.\n\nOnce the heat passes, the useful question is: what do I actually need here that I'm not getting?",
+    "A few practical things:\n• Slow the exhale — breathe out twice as long as you breathe in\n• Name what you're feeling precisely — 'I'm feeling disrespected' is more useful than 'I'm angry'\n• Separate the problem from the person if you can\n\nWhat's the situation — is it something ongoing or a one-time thing?",
+  ]);
 
   // ─── MOTIVATION ───────────────────────────────────────────────────────────
   String _motivationLow(_ResponseCtx c) {
@@ -1069,23 +1131,23 @@ class SmartResponseEngine {
   }
 
   String _motivationGoals(_ResponseCtx c) => _pick([
-        "What's the goal you're working toward? I want to understand the specific situation before suggesting anything generic.",
-        "Motivation is tricky — it usually follows action, not the other way around. What's the one thing you keep putting off that would make the biggest difference?",
-        "What have you tried so far? And what's the specific point where you usually stop?",
-      ]);
+    "What's the goal you're working toward? I want to understand the specific situation before suggesting anything generic.",
+    "Motivation is tricky — it usually follows action, not the other way around. What's the one thing you keep putting off that would make the biggest difference?",
+    "What have you tried so far? And what's the specific point where you usually stop?",
+  ]);
 
   // ─── ROUTINE ──────────────────────────────────────────────────────────────
   String _routineBuilding(_ResponseCtx c) => _pick([
-        "Building a routine that actually sticks starts with being realistic about your current life.\n\nWhat's your wake-up time? And what's the one thing you most want to make consistent — morning, work, sleep, exercise?",
-        "The key to sustainable routines: **anchor habits to existing ones**. What's something you already do every day without thinking? We can build off that.\n\nAlso — what's the main goal behind wanting a routine?",
-        "What does your current day actually look like? No judgment — I just need to know where we're starting from.",
-      ]);
+    "Building a routine that actually sticks starts with being realistic about your current life.\n\nWhat's your wake-up time? And what's the one thing you most want to make consistent — morning, work, sleep, exercise?",
+    "The key to sustainable routines: **anchor habits to existing ones**. What's something you already do every day without thinking? We can build off that.\n\nAlso — what's the main goal behind wanting a routine?",
+    "What does your current day actually look like? No judgment — I just need to know where we're starting from.",
+  ]);
 
   String _routineStruggle(_ResponseCtx c) => _pick([
-        "Routines are genuinely hard to build — most people underestimate how long it actually takes. What keeps breaking yours? Is it external things, or more internal motivation?",
-        "The inconsistency is frustrating. What usually happens — do you start strong and then slip, or does it never get off the ground?",
-        "What's the routine you're trying to build? And what's the biggest obstacle — time, energy, discipline, or not really knowing what routine you want?",
-      ]);
+    "Routines are genuinely hard to build — most people underestimate how long it actually takes. What keeps breaking yours? Is it external things, or more internal motivation?",
+    "The inconsistency is frustrating. What usually happens — do you start strong and then slip, or does it never get off the ground?",
+    "What's the routine you're trying to build? And what's the biggest obstacle — time, energy, discipline, or not really knowing what routine you want?",
+  ]);
 
   // ─── PHYSICAL ─────────────────────────────────────────────────────────────
   String _physicalPain(_ResponseCtx c) {
@@ -1097,66 +1159,68 @@ class SmartResponseEngine {
   }
 
   String _physicalGeneral(_ResponseCtx c) => _pick([
-        "What's the main thing on your mind with your health? I can talk through it with you — though for anything specific, a doctor is always the right first step.",
-        "What's going on with your health? Give me more context — what are you dealing with or trying to improve?",
-        "Health is so personal. What's the specific thing you're thinking about — something you're experiencing, or something you're trying to improve?",
-      ]);
+    "What's the main thing on your mind with your health? I can talk through it with you — though for anything specific, a doctor is always the right first step.",
+    "What's going on with your health? Give me more context — what are you dealing with or trying to improve?",
+    "Health is so personal. What's the specific thing you're thinking about — something you're experiencing, or something you're trying to improve?",
+  ]);
 
   // ─── CONTINUATION ─────────────────────────────────────────────────────────
   String _continuation(_ResponseCtx c) {
     final lastT = c.lastTopic;
-    if (lastT == null) return _general(c);
+    if (lastT == null) {
+      return _general(c);
+    }
 
     // Give a relevant follow-up based on what was just discussed
     return switch (lastT) {
       Topic.sleepProblem || Topic.sleepAdvice => _pick([
-          "So what does a typical night look like? Like, what time do you get into bed, and what happens next?",
-          "Has this been going on for long, or is it more recent?",
-          "When you're lying there awake, what's going through your head?",
-        ]),
+        "So what does a typical night look like? Like, what time do you get into bed, and what happens next?",
+        "Has this been going on for long, or is it more recent?",
+        "When you're lying there awake, what's going through your head?",
+      ]),
       Topic.anxietyFeelings || Topic.anxietyTips => _pick([
-          "What's the thing your mind keeps going back to when the anxiety hits?",
-          "Is there a specific situation or trigger you've noticed, or does it just show up randomly?",
-          "On a scale of 1-10, how bad has it been today?",
-        ]),
+        "What's the thing your mind keeps going back to when the anxiety hits?",
+        "Is there a specific situation or trigger you've noticed, or does it just show up randomly?",
+        "On a scale of 1-10, how bad has it been today?",
+      ]),
       Topic.depressionFeelings || Topic.depressionTips => _pick([
-          "What does the low feeling feel like in your body — is it heavy, numb, something else?",
-          "Have you been able to talk to anyone about this in person?",
-          "Is there anything — even something small — that brings a little relief?",
-        ]),
+        "What does the low feeling feel like in your body — is it heavy, numb, something else?",
+        "Have you been able to talk to anyone about this in person?",
+        "Is there anything — even something small — that brings a little relief?",
+      ]),
       Topic.stressWork || Topic.stressExam || Topic.stressFamily => _pick([
-          "What part of it feels most overwhelming right now?",
-          "Is there anyone around you who knows what you're going through?",
-          "What would 'good enough' look like here — what would take the pressure off even slightly?",
-        ]),
+        "What part of it feels most overwhelming right now?",
+        "Is there anyone around you who knows what you're going through?",
+        "What would 'good enough' look like here — what would take the pressure off even slightly?",
+      ]),
       Topic.lonelinessDeep || Topic.lonelinessLight => _pick([
-          "Has it always been this way, or is this new?",
-          "What kind of connection do you miss most?",
-          "Is there anyone from your past you've lost touch with that you wish you hadn't?",
-        ]),
+        "Has it always been this way, or is this new?",
+        "What kind of connection do you miss most?",
+        "Is there anyone from your past you've lost touch with that you wish you hadn't?",
+      ]),
       Topic.relationshipBreakup => _pick([
-          "Are you around people who know what's going on, or are you dealing with this mostly alone?",
-          "What's the hardest part right now — the missing them, or the uncertainty about the future?",
-          "Have you been able to give yourself space to actually feel it?",
-        ]),
+        "Are you around people who know what's going on, or are you dealing with this mostly alone?",
+        "What's the hardest part right now — the missing them, or the uncertainty about the future?",
+        "Have you been able to give yourself space to actually feel it?",
+      ]),
       Topic.motivationLow || Topic.motivationGoals => _pick([
-          "When's the last time you felt actually motivated about something?",
-          "Is there one thing — even something small — you've been putting off that you know would help?",
-          "What does your inner voice say when you think about the thing you want to do?",
-        ]),
+        "When's the last time you felt actually motivated about something?",
+        "Is there one thing — even something small — you've been putting off that you know would help?",
+        "What does your inner voice say when you think about the thing you want to do?",
+      ]),
       _ => _pick([
-          "Tell me more — what's on your mind?",
-          "What's the main thing you want to figure out right now?",
-          "What would be most helpful — talking through it, or more concrete suggestions?",
-        ]),
+        "Tell me more — what's on your mind?",
+        "What's the main thing you want to figure out right now?",
+        "What would be most helpful — talking through it, or more concrete suggestions?",
+      ]),
     };
   }
 
   String _askMoreDetail(_ResponseCtx c) => _pick([
-        "Sure — what specifically would you like me to explain more?",
-        "Of course. What part would be most helpful to go deeper on?",
-        "Happy to. What's the part that feels unclear or you want more detail on?",
-      ]);
+    "Sure — what specifically would you like me to explain more?",
+    "Of course. What part would be most helpful to go deeper on?",
+    "Happy to. What's the part that feels unclear or you want more detail on?",
+  ]);
 
   // ─── GENERAL ──────────────────────────────────────────────────────────────
   String _general(_ResponseCtx c) {
@@ -1179,10 +1243,18 @@ class SmartResponseEngine {
 
   int _tokenDelay(String token) {
     final t = token.trim();
-    if (t.isEmpty) return 0;
-    if (t.endsWith('\n')) return 30;
-    if (t.endsWith('.') || t.endsWith('?') || t.endsWith('!')) return 40;
-    if (t.endsWith(',') || t.endsWith(':') || t.endsWith('—')) return 22;
+    if (t.isEmpty) {
+      return 0;
+    }
+    if (t.endsWith('\n')) {
+      return 30;
+    }
+    if (t.endsWith('.') || t.endsWith('?') || t.endsWith('!')) {
+      return 40;
+    }
+    if (t.endsWith(',') || t.endsWith(':') || t.endsWith('—')) {
+      return 22;
+    }
     return 12;
   }
 }
